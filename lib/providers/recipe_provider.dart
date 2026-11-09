@@ -1,20 +1,23 @@
 import 'package:flutter/foundation.dart';
 import '../models/balinese_recipe.dart';
+import '../repositories/recipe_repository.dart';
 
 class RecipeProvider with ChangeNotifier {
+  final RecipeRepository repository;
+
   List<BalineseRecipe> _allRecipes = [];
   bool _isLoading = false;
   String _errorMessage = '';
   String _selectedCategory = 'Semua';
   final Set<String> _favoriteRecipeIds = {};
 
-  // Getter
+  RecipeProvider({required this.repository});
+
   bool get isLoading => _isLoading;
   String get errorMessage => _errorMessage;
   String get selectedCategory => _selectedCategory;
   Set<String> get favoriteRecipeIds => _favoriteRecipeIds;
 
-  // Filter resep berdasarkan kategori aktif
   List<BalineseRecipe> get recipes {
     if (_selectedCategory == 'Semua') {
       return _allRecipes;
@@ -24,10 +27,8 @@ class RecipeProvider with ChangeNotifier {
         .toList();
   }
 
-  // Cek apakah resep berstatus favorit
   bool isFavorite(String id) => _favoriteRecipeIds.contains(id);
 
-  // Toggle status favorit (Shared State)
   void toggleFavorite(String id) {
     if (_favoriteRecipeIds.contains(id)) {
       _favoriteRecipeIds.remove(id);
@@ -37,26 +38,24 @@ class RecipeProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  // Ubah kategori filter (Shared State)
   void setCategory(String category) {
     _selectedCategory = category;
     notifyListeners();
   }
 
-  // Inisialisasi data resep awal
-  void setRecipes(List<BalineseRecipe> recipes) {
-    _allRecipes = recipes;
+  // Integrasi pemanggilan REST API melalui Repository
+  Future<void> fetchRecipesFromApi() async {
+    _isLoading = true;
+    _errorMessage = '';
     notifyListeners();
-  }
 
-  // Set status loading & error
-  void setLoading(bool loading) {
-    _isLoading = loading;
-    notifyListeners();
-  }
-
-  void setError(String message) {
-    _errorMessage = message;
-    notifyListeners();
+    try {
+      _allRecipes = await repository.getRecipes();
+    } catch (e) {
+      _errorMessage = e.toString().replaceAll('Exception: ', '');
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
   }
 }
