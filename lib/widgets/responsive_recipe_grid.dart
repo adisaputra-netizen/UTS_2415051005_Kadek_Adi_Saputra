@@ -17,9 +17,9 @@ class ResponsiveRecipeGrid extends StatelessWidget {
     required this.itemCount,
     required this.itemBuilder,
     this.padding = const EdgeInsets.all(12.0),
-    this.mainAxisExtent = 88.0,
+    this.mainAxisExtent = 122.0,
     this.crossAxisSpacing = 12.0,
-    this.mainAxisSpacing = 8.0,
+    this.mainAxisSpacing = 10.0,
   });
 
   @override

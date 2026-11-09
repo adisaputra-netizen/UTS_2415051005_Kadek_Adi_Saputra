@@ -5,26 +5,40 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:provider/provider.dart';
 
 import 'package:dapur_dewata/main.dart';
+import 'package:dapur_dewata/services/api_service.dart';
+import 'package:dapur_dewata/repositories/recipe_repository.dart';
+import 'package:dapur_dewata/services/supabase_service.dart';
+import 'package:dapur_dewata/repositories/user_recipe_repository.dart';
+import 'package:dapur_dewata/providers/recipe_provider.dart';
+import 'package:dapur_dewata/providers/user_recipe_provider.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('App smoke test', (WidgetTester tester) async {
+    final apiService = ApiService();
+    final recipeRepository = RecipeRepository(apiService);
+    final supabaseService = SupabaseService();
+    final userRecipeRepository = UserRecipeRepository(supabaseService);
+
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: (_) => RecipeProvider(repository: recipeRepository),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => UserRecipeProvider(repository: userRecipeRepository),
+          ),
+        ],
+        child: const DapurDewataApp(),
+      ),
+    );
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Verify that Dapur Dewata title exists
+    expect(find.text('Dapur Dewata'), findsWidgets);
   });
 }

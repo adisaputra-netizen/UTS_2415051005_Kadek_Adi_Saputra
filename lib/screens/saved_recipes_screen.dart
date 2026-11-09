@@ -10,6 +10,12 @@ class SavedRecipesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const primaryTerracotta = Color(0xFF8D3028);
+    const textEspresso = Color(0xFF302923);
+    const accentGold = Color(0xFFD5A34A);
+    const secondaryHerbal = Color(0xFF526B45);
+    const cardSurface = Color(0xFFFFFDF9);
+
     final noteProvider = context.watch<UserRecipeProvider>();
 
     return Scaffold(
@@ -18,6 +24,7 @@ class SavedRecipesScreen extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
+            tooltip: 'Muat ulang catatan',
             onPressed: () => context.read<UserRecipeProvider>().fetchUserNotes(),
           )
         ],
@@ -26,7 +33,7 @@ class SavedRecipesScreen extends StatelessWidget {
         builder: (context) {
           if (noteProvider.isLoading) {
             return const Center(
-              child: CircularProgressIndicator(color: Color(0xFFC0392B)),
+              child: CircularProgressIndicator(color: primaryTerracotta),
             );
           }
 
@@ -43,7 +50,7 @@ class SavedRecipesScreen extends StatelessWidget {
             return const StateFeedbackWidget(
               icon: Icons.note_alt_outlined,
               title: 'Belum Ada Catatan Resep',
-              message: 'Klik tombol + di bawah untuk mencatat pengalaman atau modifikasi resepmu.',
+              message: 'Klik tombol + di bawah untuk mencatat pengalaman atau modifikasi resep khas Bali pilihanmu.',
             );
           }
 
@@ -54,9 +61,19 @@ class SavedRecipesScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               final note = noteProvider.notes[index];
 
-              return Card(
-                elevation: 2,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              return Container(
+                decoration: BoxDecoration(
+                  color: cardSurface,
+                  borderRadius: BorderRadius.circular(14),
+                  border: Border.all(color: primaryTerracotta.withValues(alpha: 0.12)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.03),
+                      blurRadius: 6,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
                 child: Padding(
                   padding: const EdgeInsets.all(14.0),
                   child: Column(
@@ -68,22 +85,30 @@ class SavedRecipesScreen extends StatelessWidget {
                           Expanded(
                             child: Text(
                               note.recipeName,
-                              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: textEspresso,
+                              ),
                             ),
                           ),
                           Row(
                             children: [
-                              const Icon(Icons.star, color: Colors.amber, size: 18),
-                              const SizedBox(width: 4),
+                              const Icon(Icons.star_rounded, color: accentGold, size: 20),
+                              const SizedBox(width: 3),
                               Text(
                                 '${note.personalRating}/5',
-                                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 13,
+                                  color: textEspresso,
+                                ),
                               ),
                               const SizedBox(width: 8),
                               // Tombol Edit
                               IconButton(
                                 constraints: const BoxConstraints(),
-                                padding: EdgeInsets.zero,
+                                padding: const EdgeInsets.all(4),
                                 icon: const Icon(Icons.edit_outlined, size: 20, color: Colors.blueGrey),
                                 onPressed: () {
                                   Navigator.push(
@@ -94,18 +119,22 @@ class SavedRecipesScreen extends StatelessWidget {
                                   );
                                 },
                               ),
-                              const SizedBox(width: 8),
+                              const SizedBox(width: 4),
                               // Tombol Hapus
                               IconButton(
                                 constraints: const BoxConstraints(),
-                                padding: EdgeInsets.zero,
-                                icon: const Icon(Icons.delete_outline, size: 20, color: Colors.red),
+                                padding: const EdgeInsets.all(4),
+                                icon: const Icon(Icons.delete_outline, size: 20, color: Colors.redAccent),
                                 onPressed: () async {
                                   if (note.id == null) return;
                                   final confirm = await showDialog<bool>(
                                     context: context,
                                     builder: (ctx) => AlertDialog(
-                                      title: const Text('Hapus Catatan'),
+                                      backgroundColor: cardSurface,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(14),
+                                      ),
+                                      title: const Text('Hapus Catatan', style: TextStyle(color: textEspresso)),
                                       content: Text('Yakin ingin menghapus catatan "${note.recipeName}"?'),
                                       actions: [
                                         TextButton(
@@ -114,8 +143,11 @@ class SavedRecipesScreen extends StatelessWidget {
                                         ),
                                         ElevatedButton(
                                           style: ElevatedButton.styleFrom(
-                                            backgroundColor: Colors.red,
+                                            backgroundColor: Colors.redAccent,
                                             foregroundColor: Colors.white,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(12),
+                                            ),
                                           ),
                                           onPressed: () => Navigator.pop(ctx, true),
                                           child: const Text('Hapus'),
@@ -133,7 +165,7 @@ class SavedRecipesScreen extends StatelessWidget {
                                                 ? 'Catatan berhasil dihapus dari database!'
                                                 : 'Gagal menghapus: ${context.read<UserRecipeProvider>().errorMessage}',
                                           ),
-                                          backgroundColor: success ? Colors.green : Colors.red,
+                                          backgroundColor: success ? Colors.green.shade700 : Colors.red,
                                         ),
                                       );
                                     }
@@ -144,31 +176,42 @@ class SavedRecipesScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 4),
+                      const SizedBox(height: 6),
                       Row(
                         children: [
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2.5),
                             decoration: BoxDecoration(
-                              color: Colors.orange.shade50,
-                              borderRadius: BorderRadius.circular(6),
+                              color: secondaryHerbal.withValues(alpha: 0.16),
+                              borderRadius: BorderRadius.circular(10),
                             ),
                             child: Text(
                               note.category,
-                              style: TextStyle(color: Colors.orange.shade900, fontSize: 12),
+                              style: const TextStyle(
+                                color: secondaryHerbal,
+                                fontSize: 11.5,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
                           const SizedBox(width: 8),
                           Text(
                             'Tingkat: ${note.difficulty}',
-                            style: TextStyle(color: Colors.grey.shade600, fontSize: 12),
+                            style: TextStyle(
+                              color: textEspresso.withValues(alpha: 0.65),
+                              fontSize: 12,
+                            ),
                           ),
                         ],
                       ),
                       const SizedBox(height: 10),
                       Text(
                         note.cookingNote,
-                        style: TextStyle(fontSize: 14, color: Colors.grey.shade800, height: 1.3),
+                        style: TextStyle(
+                          fontSize: 13.5,
+                          color: textEspresso.withValues(alpha: 0.85),
+                          height: 1.35,
+                        ),
                       ),
                     ],
                   ),
@@ -179,8 +222,9 @@ class SavedRecipesScreen extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color(0xFFC0392B),
+        backgroundColor: primaryTerracotta,
         foregroundColor: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         onPressed: () {
           Navigator.push(
             context,

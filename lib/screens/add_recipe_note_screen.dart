@@ -231,9 +231,9 @@ class _AddRecipeNoteScreenState extends State<AddRecipeNoteScreen> {
                 height: 48,
                 child: ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFC0392B),
+                    backgroundColor: const Color(0xFF8D3028),
                     foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
                   ),
                   onPressed: _isSubmitting ? null : _handleSubmit,
                   icon: _isSubmitting

@@ -48,14 +48,93 @@ class DapurDewataApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const primaryTerracotta = Color(0xFF8D3028);
+    const bgWarmCream = Color(0xFFF4EBDD);
+    const accentGold = Color(0xFFD5A34A);
+    const secondaryHerbal = Color(0xFF526B45);
+    const textEspresso = Color(0xFF302923);
+    const cardSurface = Color(0xFFFFFDF9);
+
     return MaterialApp(
       title: 'Dapur Dewata',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFFC0392B),
+        scaffoldBackgroundColor: bgWarmCream,
+        colorScheme: const ColorScheme(
           brightness: Brightness.light,
+          primary: primaryTerracotta,
+          onPrimary: Colors.white,
+          secondary: secondaryHerbal,
+          onSecondary: Colors.white,
+          tertiary: accentGold,
+          onTertiary: Colors.white,
+          surface: cardSurface,
+          onSurface: textEspresso,
+          error: Color(0xFFBA1A1A),
+          onError: Colors.white,
+        ),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: bgWarmCream,
+          foregroundColor: primaryTerracotta,
+          elevation: 0,
+          scrolledUnderElevation: 0,
+          centerTitle: true,
+          titleTextStyle: TextStyle(
+            color: primaryTerracotta,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+          iconTheme: IconThemeData(color: primaryTerracotta),
+        ),
+        cardTheme: CardThemeData(
+          color: cardSurface,
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(14),
+            side: BorderSide(color: primaryTerracotta.withValues(alpha: 0.12)),
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: primaryTerracotta,
+            foregroundColor: Colors.white,
+            minimumSize: const Size.fromHeight(48),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(14),
+            ),
+            textStyle: const TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(
+            foregroundColor: primaryTerracotta,
+            side: BorderSide(color: primaryTerracotta.withValues(alpha: 0.2)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(14),
+            ),
+          ),
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          fillColor: cardSurface,
+          labelStyle: TextStyle(color: textEspresso.withValues(alpha: 0.8)),
+          hintStyle: TextStyle(color: textEspresso.withValues(alpha: 0.45)),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(14),
+            borderSide: BorderSide(color: primaryTerracotta.withValues(alpha: 0.2)),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(14),
+            borderSide: BorderSide(color: primaryTerracotta.withValues(alpha: 0.2)),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(14),
+            borderSide: const BorderSide(color: primaryTerracotta, width: 1.5),
+          ),
         ),
       ),
       home: const MainNavigationScreen(),
