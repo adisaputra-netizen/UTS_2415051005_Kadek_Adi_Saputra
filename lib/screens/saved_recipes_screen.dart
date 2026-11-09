@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'add_recipe_note_screen.dart';
 
 class SavedRecipesScreen extends StatelessWidget {
   const SavedRecipesScreen({super.key});
@@ -21,12 +22,25 @@ class SavedRecipesScreen extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              'Fitur CRUD catatan resep terintegrasi dengan database Supabase.',
+              'Klik tombol + untuk menambah catatan kreasi memasakmu.',
               style: TextStyle(color: Colors.grey.shade600, fontSize: 13),
               textAlign: TextAlign.center,
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color(0xFFC0392B),
+        foregroundColor: Colors.white,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const AddRecipeNoteScreen(),
+            ),
+          );
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }
