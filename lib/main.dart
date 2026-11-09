@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'providers/recipe_provider.dart';
+import 'providers/user_recipe_provider.dart';
 import 'screens/main_navigation_screen.dart';
 
 void main() {
-  runApp(const DapurDewataApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => RecipeProvider()),
+        ChangeNotifierProvider(create: (_) => UserRecipeProvider()),
+      ],
+      child: const DapurDewataApp(),
+    ),
+  );
 }
 
 class DapurDewataApp extends StatelessWidget {
