@@ -5,12 +5,14 @@ import '../providers/user_recipe_provider.dart';
 
 class AddRecipeNoteScreen extends StatefulWidget {
   final String? recipeName;
-  final String? category;
+  final String? initialCategory;
+  final UserRecipeNote? existingNote;
 
   const AddRecipeNoteScreen({
     super.key,
     this.recipeName,
-    this.category,
+    this.initialCategory,
+    this.existingNote,
   });
 
   @override
@@ -20,30 +22,47 @@ class AddRecipeNoteScreen extends StatefulWidget {
 class _AddRecipeNoteScreenState extends State<AddRecipeNoteScreen> {
   final _formKey = GlobalKey<FormState>();
   late final TextEditingController _nameController;
-  final TextEditingController _noteController = TextEditingController();
+  late final TextEditingController _noteController;
 
-  String _selectedCategory = 'Olahan Ayam';
-  String _selectedDifficulty = 'Mudah';
-  int _rating = 5;
+  late String _selectedCategory;
+  late String _selectedDifficulty;
+  late int _rating;
   bool _isSubmitting = false;
 
-  final List<String> _categories = [
+  final List<String> _categories = const [
     'Olahan Ayam',
     'Sate & Lilit',
     'Sayur & Lawar',
     'Sambal Autentik',
+    'Umum',
     'Lainnya',
   ];
 
-  final List<String> _difficulties = ['Mudah', 'Menengah', 'Sulit'];
+  final List<String> _difficulties = const [
+    'Mudah',
+    'Sedang',
+    'Sulit',
+  ];
 
   @override
   void initState() {
     super.initState();
-    _nameController = TextEditingController(text: widget.recipeName ?? '');
-    if (widget.category != null && _categories.contains(widget.category)) {
-      _selectedCategory = widget.category!;
+    final note = widget.existingNote;
+    _nameController = TextEditingController(
+      text: note?.recipeName ?? widget.recipeName ?? '',
+    );
+    _noteController = TextEditingController(
+      text: note?.cookingNote ?? '',
+    );
+    _selectedCategory = note?.category ?? widget.initialCategory ?? 'Olahan Ayam';
+    if (!_categories.contains(_selectedCategory)) {
+      _selectedCategory = 'Umum';
     }
+    _selectedDifficulty = note?.difficulty ?? 'Mudah';
+    if (!_difficulties.contains(_selectedDifficulty)) {
+      _selectedDifficulty = 'Mudah';
+    }
+    _rating = note?.personalRating ?? 5;
   }
 
   @override
@@ -58,7 +77,11 @@ class _AddRecipeNoteScreenState extends State<AddRecipeNoteScreen> {
 
     setState(() => _isSubmitting = true);
 
-    final newNote = UserRecipeNote(
+    final provider = context.read<UserRecipeProvider>();
+    final isEditing = widget.existingNote != null;
+
+    final noteData = UserRecipeNote(
+      id: widget.existingNote?.id,
       nim: '2415051005',
       recipeName: _nameController.text.trim(),
       category: _selectedCategory,
@@ -67,25 +90,33 @@ class _AddRecipeNoteScreenState extends State<AddRecipeNoteScreen> {
       personalRating: _rating,
     );
 
-    final success = await context.read<UserRecipeProvider>().addNote(newNote);
+    bool success;
+    if (isEditing) {
+      success = await provider.updateNote(noteData);
+    } else {
+      success = await provider.addNote(noteData);
+    }
 
     if (!mounted) return;
     setState(() => _isSubmitting = false);
 
     if (success) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Catatan resep berhasil disimpan ke Supabase!'),
-          backgroundColor: Colors.green,
+        SnackBar(
+          content: Text(
+            isEditing
+                ? 'Catatan resep berhasil diperbarui!'
+                : 'Catatan resep berhasil disimpan ke Supabase!',
+          ),
+          backgroundColor: Colors.green.shade700,
         ),
       );
       Navigator.pop(context);
     } else {
-      final error = context.read<UserRecipeProvider>().errorMessage;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Gagal menyimpan: $error'),
-          backgroundColor: Colors.red,
+          content: Text('Gagal menyimpan catatan: ${provider.errorMessage}'),
+          backgroundColor: Colors.red.shade700,
         ),
       );
     }
@@ -93,9 +124,11 @@ class _AddRecipeNoteScreenState extends State<AddRecipeNoteScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isEditing = widget.existingNote != null;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tambah Catatan Masak'),
+        title: Text(isEditing ? 'Edit Catatan Masak' : 'Tambah Catatan Masak'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -104,33 +137,38 @@ class _AddRecipeNoteScreenState extends State<AddRecipeNoteScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Nama Menu Resep
               TextFormField(
                 controller: _nameController,
                 decoration: const InputDecoration(
-                  labelText: 'Nama Menu Resep *',
-                  hintText: 'Contoh: Ayam Betutu Kuah Kental',
+                  labelText: 'Nama Menu Resep',
+                  hintText: 'Contoh: Ayam Betutu Gilimanuk',
                   border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.restaurant_menu),
+                  prefixIcon: Icon(Icons.restaurant),
                 ),
                 validator: (val) =>
-                    (val == null || val.trim().isEmpty) ? 'Nama menu resep wajib diisi' : null,
+                    (val == null || val.trim().isEmpty) ? 'Nama resep wajib diisi' : null,
               ),
               const SizedBox(height: 16),
+
+              // Kategori Dropdown
               DropdownButtonFormField<String>(
                 value: _selectedCategory,
                 decoration: const InputDecoration(
                   labelText: 'Kategori Resep',
                   border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.category),
+                  prefixIcon: Icon(Icons.category_outlined),
                 ),
-                items: _categories
-                    .map((cat) => DropdownMenuItem(value: cat, child: Text(cat)))
-                    .toList(),
+                items: _categories.map((cat) {
+                  return DropdownMenuItem(value: cat, child: Text(cat));
+                }).toList(),
                 onChanged: (val) {
                   if (val != null) setState(() => _selectedCategory = val);
                 },
               ),
               const SizedBox(height: 16),
+
+              // Tingkat Kesulitan Dropdown
               DropdownButtonFormField<String>(
                 value: _selectedDifficulty,
                 decoration: const InputDecoration(
@@ -138,48 +176,56 @@ class _AddRecipeNoteScreenState extends State<AddRecipeNoteScreen> {
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.speed),
                 ),
-                items: _difficulties
-                    .map((dif) => DropdownMenuItem(value: dif, child: Text(dif)))
-                    .toList(),
+                items: _difficulties.map((diff) {
+                  return DropdownMenuItem(value: diff, child: Text(diff));
+                }).toList(),
                 onChanged: (val) {
                   if (val != null) setState(() => _selectedDifficulty = val);
                 },
               ),
               const SizedBox(height: 16),
+
+              // Rating Bintang
               const Text(
-                'Rating Kepuasan Hasil Masak:',
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                'Rating Kepuasan / Rasa (1 - 5)',
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
               ),
               const SizedBox(height: 6),
               Row(
                 children: List.generate(5, (index) {
+                  final starIndex = index + 1;
                   return IconButton(
-                    padding: EdgeInsets.zero,
+                    iconSize: 32,
+                    padding: const EdgeInsets.symmetric(horizontal: 4),
                     constraints: const BoxConstraints(),
                     icon: Icon(
-                      index < _rating ? Icons.star : Icons.star_border,
-                      color: Colors.amber,
-                      size: 32,
+                      starIndex <= _rating ? Icons.star : Icons.star_border,
+                      color: Colors.amber.shade700,
                     ),
-                    onPressed: () => setState(() => _rating = index + 1),
+                    onPressed: () {
+                      setState(() => _rating = starIndex);
+                    },
                   );
                 }),
               ),
               const SizedBox(height: 16),
+
+              // Catatan Modifikasi / Catatan Masak
               TextFormField(
                 controller: _noteController,
                 maxLines: 4,
                 decoration: const InputDecoration(
-                  labelText: 'Catatan Modifikasi / Tips Bumbu *',
-                  hintText:
-                      'Contoh: Kencur ditambah sedikit agar lebih wangi, kukus 90 menit agar serat ayam sangat empuk.',
+                  labelText: 'Catatan Modifikasi / Pengalaman Memasak',
+                  hintText: 'Contoh: Takaran cabai dikurangi sedikit, base genep ditumis lebih lama...',
                   border: OutlineInputBorder(),
                   alignLabelWithHint: true,
                 ),
                 validator: (val) =>
-                    (val == null || val.trim().length < 5) ? 'Catatan minimal 5 karakter' : null,
+                    (val == null || val.trim().isEmpty) ? 'Catatan tidak boleh kosong' : null,
               ),
               const SizedBox(height: 24),
+
+              // Tombol Simpan
               SizedBox(
                 width: double.infinity,
                 height: 48,
@@ -196,8 +242,13 @@ class _AddRecipeNoteScreenState extends State<AddRecipeNoteScreen> {
                           height: 20,
                           child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
                         )
-                      : const Icon(Icons.save),
-                  label: Text(_isSubmitting ? 'Menyimpan...' : 'Simpan ke Database'),
+                      : const Icon(Icons.save_outlined),
+                  label: Text(
+                    _isSubmitting
+                        ? 'Menyimpan...'
+                        : (isEditing ? 'Perbarui Catatan' : 'Simpan ke Supabase'),
+                    style: const TextStyle(fontSize: 15),
+                  ),
                 ),
               ),
             ],

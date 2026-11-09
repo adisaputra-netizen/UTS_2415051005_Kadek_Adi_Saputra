@@ -72,6 +72,9 @@ class UserRecipeProvider with ChangeNotifier {
     }
   }
 
+  // Alias untuk kompatibilitas pemanggilan editNote
+  Future<bool> editNote(UserRecipeNote note) => updateNote(note);
+
   // Menghapus catatan di Supabase
   Future<bool> deleteNote(int id) async {
     _isLoading = true;
