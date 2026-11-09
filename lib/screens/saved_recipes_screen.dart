@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../providers/user_recipe_provider.dart';
+import '../widgets/state_feedback_widget.dart';
 import 'add_recipe_note_screen.dart';
 
 class SavedRecipesScreen extends StatelessWidget {
@@ -6,28 +9,112 @@ class SavedRecipesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final noteProvider = context.watch<UserRecipeProvider>();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Catatan Masak Saya'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: () => context.read<UserRecipeProvider>().fetchUserNotes(),
+          )
+        ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.bookmark_border_rounded, size: 64, color: Colors.grey.shade400),
-            const SizedBox(height: 12),
-            const Text(
-              'Belum Ada Catatan Resep',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              'Klik tombol + untuk menambah catatan kreasi memasakmu.',
-              style: TextStyle(color: Colors.grey.shade600, fontSize: 13),
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
+      body: Builder(
+        builder: (context) {
+          if (noteProvider.isLoading) {
+            return const Center(
+              child: CircularProgressIndicator(color: Color(0xFFC0392B)),
+            );
+          }
+
+          if (noteProvider.errorMessage.isNotEmpty) {
+            return StateFeedbackWidget(
+              icon: Icons.error_outline,
+              title: 'Gagal Memuat Catatan',
+              message: noteProvider.errorMessage,
+              onRetry: () => context.read<UserRecipeProvider>().fetchUserNotes(),
+            );
+          }
+
+          if (noteProvider.notes.isEmpty) {
+            return StateFeedbackWidget(
+              icon: Icons.note_alt_outlined,
+              title: 'Belum Ada Catatan Resep',
+              message: 'Klik tombol + di bawah untuk mencatat pengalaman atau modifikasi resepmu.',
+            );
+          }
+
+          return ListView.separated(
+            padding: const EdgeInsets.all(16),
+            itemCount: noteProvider.notes.length,
+            separatorBuilder: (_, __) => const SizedBox(height: 12),
+            itemBuilder: (context, index) {
+              final note = noteProvider.notes[index];
+
+              return Card(
+                elevation: 2,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                child: Padding(
+                  padding: const EdgeInsets.all(14.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              note.recipeName,
+                              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              const Icon(Icons.star, color: Colors.amber, size: 18),
+                              const SizedBox(width: 4),
+                              Text(
+                                '${note.personalRating}/5',
+                                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 4),
+                      Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                            decoration: BoxDecoration(
+                              color: Colors.orange.shade50,
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: Text(
+                              note.category,
+                              style: TextStyle(color: Colors.orange.shade900, fontSize: 12),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            'Tingkat: ${note.difficulty}',
+                            style: TextStyle(color: Colors.grey.shade600, fontSize: 12),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        note.cookingNote,
+                        style: TextStyle(fontSize: 14, color: Colors.grey.shade800, height: 1.3),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color(0xFFC0392B),
