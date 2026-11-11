@@ -1,165 +1,113 @@
 [
     {
-        "id": "rec_01",
+        "id": 1,
         "name": "Ayam Betutu Gilimanuk",
         "category": "Olahan Ayam",
-        "difficulty": "Menengah",
-        "cooking_time": 90,
-        "image_url": "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?q=80&w=800&auto=format&fit=crop",
-        "imageUrl": "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?q=80&w=800&auto=format&fit=crop",
-        "description": "Ayam utuh dengan bumbu rempah base genep pekat yang dikukus dan dipanggang lambat hingga meresap ke serat daging.",
+        "cookingTime": 90,
+        "rating": 4.9,
+        "imageUrl": "https://raw.githubusercontent.com/adisaputra-netizen/UTS_2415051005_Kadek_Adi_Saputra/main/data/images/Ayam%20betutu%20gilimanuk.jpg",
+        "description": "Ayam utuh dengan bumbu rempah base genep khas Gilimanuk yang dimasak perlahan hingga bumbu meresap sempurna dan daging sangat empuk.",
         "ingredients": [
-            "1 ekor ayam utuh (ayam kampung lebih disarankan)",
-            "10 butir bawang merah & 6 siung bawang putih",
-            "15 buah cabai rawit merah & 5 cabai merah besar",
-            "4 Rimpang Utama Base Genep: 3 cm lengkuas (isen), 3 cm kunyit bakar, 2 cm jahe, 2 cm kencur (cekuh)",
-            "4 butir kemiri sangrai & 1 sdm ketumbar bubuk",
-            "1/2 sdt merica hitam & 1/2 sdt terasi bakar khas Bali",
-            "3 batang serai (memarkan) & 4 lembar daun salam",
-            "3 sdm minyak kelapa asli (lengis tandusan)",
-            "1 sdt garam & 1 sdt gula aren",
-            "Daun pisang secukupnya untuk membungkus"
+            "1 ekor ayam kampung utuh",
+            "Bumbu base genep lengkap (kunyit, kencur, jahe, lengkuas)",
+            "Cabai rawit merah secukupnya",
+            "Serai, daun salam, daun jeruk",
+            "Garam dan minyak kelapa"
         ],
         "steps": [
-            "Cincang halus atau ulek bawang merah, bawang putih, cabai, serta 4 rimpang (lengkuas, kunyit, jahe, kencur).",
-            "Sangrai kemiri, ketumbar, dan merica, lalu haluskan bersama terasi bakar.",
-            "Campurkan semua bumbu halus dengan minyak kelapa asli, garam, dan gula aren.",
-            "Lumuri seluruh badan ayam (luar dan rongga dalam) dengan bumbu rempah sambil dipijat perlahan.",
-            "Masukkan batang serai dan daun salam ke dalam rongga perut ayam.",
-            "Bungkus ayam rapat-rapat dengan daun pisang, lalu kukus 60-90 menit hingga daging empuk.",
-            "Panggang sebentar di wajan atau oven untuk mengeluarkan aroma harum asap khas Betutu."
+            "Haluskan bumbu base genep dan tumis hingga harum dengan minyak kelapa.",
+            "Lumuri ayam utuh dengan bumbu hingga merata ke bagian dalam.",
+            "Bungkus ayam dengan pelepah atau daun pisang rapat-rapat.",
+            "Kukus atau panggang dengan api kecil selama 90 menit hingga bumbu meresap dan tekstur empuk."
         ]
     },
     {
-        "id": "rec_02",
+        "id": 2,
         "name": "Sate Lilit Ikan Khas Bali",
         "category": "Sate & Lilit",
-        "difficulty": "Mudah",
-        "cooking_time": 45,
-        "image_url": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=800&auto=format&fit=crop",
-        "imageUrl": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=800&auto=format&fit=crop",
-        "description": "Daging ikan cincang berpadu kelapa parut dan bumbu base genep wangi yang dililitkan pada batang serai segar.",
+        "cookingTime": 45,
+        "rating": 4.9,
+        "imageUrl": "https://raw.githubusercontent.com/adisaputra-netizen/UTS_2415051005_Kadek_Adi_Saputra/main/data/images/Resep%20Sate%20Lilit%20Khas%20Bali%20Super.jpg",
+        "description": "Sate lilit tradisional Bali dengan adonan daging ikan tenggiri cincang, parutan kelapa muda gurih, bumbu base genep, dan dililitkan pada batang serai segar.",
         "ingredients": [
-            "500 gram fillet ikan tenggiri / tongkol (haluskan)",
-            "150 gram kelapa parut setengah tua (kupas kulit ari)",
-            "Bumbu Halus Base Genep: 8 bawang merah, 4 bawang putih, 2 cm kunyit bakar, 2 cm kencur, 2 cm lengkuas, 1 cm jahe",
-            "6 buah cabai rawit merah (cincang halus)",
-            "1 sdt ketumbar sangrai bubuk & 1/2 sdt terasi bakar",
-            "2 lembar daun jeruk purut (buang tulang, iris tipis)",
-            "1 sdm santan kental & 1 sdm gula merah sisir",
-            "1 sdt garam & 1/2 sdt kaldu jamur",
-            "12-15 batang serai segar (sebagai tangkai sate)"
+            "500g daging ikan tenggiri/tongkol cincang halus",
+            "150g kelapa parut setengah tua",
+            "Bumbu base genep halus",
+            "Batang serai untuk tusukan sate",
+            "Santan kental dan garam"
         ],
         "steps": [
-            "Tumis bumbu halus base genep hingga matang dan harum, lalu dinginkan.",
-            "Campurkan daging ikan giling, kelapa parut, irisan daun jeruk, dan bumbu tumis ke dalam wadah.",
-            "Tuangkan santan kental, gula merah, dan garam. Uleni hingga adonan kalis dan merekat.",
-            "Ambil kepalan kecil adonan, lilitkan dan padatkan pada ujung batang serai.",
-            "Panggang di atas grill pan atau bara arang sambil dibalik hingga matang kecokelatan merata."
+            "Campurkan daging ikan cincang, kelapa parut, santan, dan bumbu halus hingga kalis.",
+            "Ambil kepalan adonan, lalu lilitkan merata pada batang serai.",
+            "Panggang sate di atas bara arang hingga matang kecokelatan dan harum.",
+            "Sajikan hangat bersama sambal matah."
         ]
     },
     {
-        "id": "rec_03",
+        "id": 3,
         "name": "Lawar Kacang Panjang Bali",
         "category": "Sayur & Lawar",
-        "difficulty": "Mudah",
-        "cooking_time": 30,
-        "image_url": "https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=800&auto=format&fit=crop",
-        "imageUrl": "https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=800&auto=format&fit=crop",
-        "description": "Sayuran renyah berpadu gurihnya kelapa bakar parut dan siraman bumbu base genep tumis.",
+        "cookingTime": 30,
+        "rating": 4.8,
+        "imageUrl": "https://raw.githubusercontent.com/adisaputra-netizen/UTS_2415051005_Kadek_Adi_Saputra/main/data/images/Lawar%20kacang%20Panjang.jpg",
+        "description": "Sayuran renyah berpadu gurihnya kelapa bakar parut dan siraman bumbu base genep serta bawang goreng harum khas Bali.",
         "ingredients": [
-            "250 gram kacang panjang muda (cuci bersih, potong 0.5 cm)",
-            "100 gram kelapa setengah tua (bakar di atas bara, parut kasar)",
-            "Bumbu Base Genep Tumis: 6 bawang merah, 3 bawang putih, 2 cm kencur, 2 cm lengkuas, 1 cm kunyit, 5 cabai rawit",
-            "1/2 sdt terasi bakar & 1/2 sdt ketumbar bubuk",
-            "2 sdm minyak kelapa asli untuk menumis",
-            "1 buah jeruk limau / lemo (ambil air perasan)",
-            "1 sdt garam & bawang merah goreng untuk taburan"
+            "250g kacang panjang, potong 1/2 cm dan rebus sebentar",
+            "100g kelapa parut bakar",
+            "Cincangan daging ayam rebus",
+            "Bumbu base genep dan terasi bakar",
+            "Bawang merah dan bawang putih goreng"
         ],
         "steps": [
-            "Rebus kacang panjang dalam air mendidih bergaram selama 1-2 menit saja agar tetap renyah, lalu tiriskan.",
-            "Ulek bumbu base genep dan terasi, lalu tumis dengan minyak kelapa sampai matang dan harum.",
-            "Campurkan kacang panjang rebus dan kelapa bakar parut di wadah bersih.",
-            "Masukkan bumbu tumis dan garam, aduk serta remas perlahan menggunakan sarung tangan hingga merata.",
-            "Beri perasan air jeruk limau dan taburi dengan bawang merah goreng renyah."
+            "Campurkan kacang panjang rebus dengan kelapa bakar parut dalam mangkuk besar.",
+            "Tambahkan bumbu base genep matang dan cincangan ayam.",
+            "Aduk dan bejek perlahan dengan tangan hingga bumbu tercampur rata.",
+            "Taburkan bawang goreng di atasnya sebelum disajikan."
         ]
     },
     {
-        "id": "rec_04",
+        "id": 4,
         "name": "Sambal Matah Khas Bali",
         "category": "Sambal Autentik",
-        "difficulty": "Sangat Mudah",
-        "cooking_time": 15,
-        "image_url": "https://images.unsplash.com/photo-1596797038530-2c107229654b?q=80&w=800&auto=format&fit=crop",
-        "imageUrl": "https://images.unsplash.com/photo-1596797038530-2c107229654b?q=80&w=800&auto=format&fit=crop",
-        "description": "Sambal mentah iris segar dengan kombinasi serai, bawang merah, cabai, dan siraman minyak kelapa mendidih.",
+        "cookingTime": 15,
+        "rating": 4.8,
+        "imageUrl": "https://raw.githubusercontent.com/adisaputra-netizen/UTS_2415051005_Kadek_Adi_Saputra/main/data/images/Sambal%20Matah.jpg",
+        "description": "Sambal mentah iris segar dengan kombinasi serai, bawang merah, cabai, dan siraman minyak kelapa tandus panas.",
         "ingredients": [
-            "12 butir bawang merah segar (iris tipis merata)",
-            "10 buah cabai rawit merah (iris tipis bulat)",
-            "4 batang serai (ambil bagian putih tengahnya, iris halus)",
-            "3 lembar daun jeruk (buang tulang, iris tipis)",
-            "1/2 sdt terasi bakar berkualitas (haluskan)",
-            "1/2 sdt garam & 1/4 sdt gula pasir",
-            "4 sdm minyak kelapa asli panas mendidih",
-            "1 buah jeruk limau / lemo"
+            "10 butir bawang merah, iris tipis",
+            "15 buah cabai rawit merah, iris halus",
+            "3 batang serai bagian putih, iris sangat tipis",
+            "3 lembar daun jeruk, buang tulang dan iris halus",
+            "1/2 sdt terasi bakar, hancurkan",
+            "Minyak kelapa asli dan air perasan jeruk limau"
         ],
         "steps": [
-            "Campurkan irisan bawang merah, cabai rawit, serai putih, dan daun jeruk ke dalam mangkuk tahan panas.",
-            "Tambahkan terasi bakar halus, garam, dan gula pasir.",
-            "Remas perlahan bahan dengan sendok agar aroma segarnya keluar.",
-            "Panaskan minyak kelapa hingga mendidih, lalu langsung siramkan ke dalam campuran sambal.",
-            "Aduk rata dan beri perasan air jeruk limau sebelum disajikan."
+            "Campur semua bahan irisan dalam mangkuk tahan panas bersama garam dan terasi.",
+            "Remas perlahan menggunakan sarung tangan agar aroma keluar.",
+            "Panaskan minyak kelapa hingga benar-benar panas, lalu siramkan langsung ke mangkuk sambal.",
+            "Beri perasan air jeruk limau, aduk rata, dan siap dinikmati."
         ]
     },
     {
-        "id": "rec_05",
+        "id": 5,
         "name": "Jukut Ares Tulang Ayam/Bebek",
         "category": "Sayur & Lawar",
-        "difficulty": "Menengah",
-        "cooking_time": 60,
-        "image_url": "https://images.unsplash.com/photo-1547592166-23ac45744acd?q=80&w=800&auto=format&fit=crop",
-        "imageUrl": "https://images.unsplash.com/photo-1547592166-23ac45744acd?q=80&w=800&auto=format&fit=crop",
-        "description": "Sup kuah hangat tradisional dari batang pohon pisang muda yang dimasak bersama kaldu dan bumbu base genep.",
+        "cookingTime": 60,
+        "rating": 4.9,
+        "imageUrl": "https://raw.githubusercontent.com/adisaputra-netizen/UTS_2415051005_Kadek_Adi_Saputra/main/data/images/jukut%20Ares%20Tulang%20Ayam-Bebek.jpg",
+        "description": "Sup tradisional khas Bali berbahan empulur batang pisang muda yang dimasak kuah kuning rempah bersama potongan tulang ayam/bebek gurih.",
         "ingredients": [
-            "1 batang pohon pisang muda (ares) bagian dalam yang putih empuk",
-            "300 gram tulang ayam / bebek untuk kaldu",
-            "Bumbu Base Genep Halus: 8 bawang merah, 5 bawang putih, 3 cm kunyit, 3 cm lengkuas, 2 cm jahe, 2 cm kencur, 7 cabai rawit",
-            "1 sdt ketumbar, 1/2 sdt lada hitam, 1/2 sdt terasi bakar",
-            "2 batang serai & 3 lembar daun salam",
-            "1.5 liter air kaldu",
-            "2 sdt garam & 1 sdm minyak kelapa untuk menumis"
+            "1 batang empulur pohon pisang muda (ares), iris tipis dan remas garam",
+            "400g tulang dan daging ayam/bebek",
+            "Bumbu base genep lengkap",
+            "Daun salam, serai, dan lengkuas geprek",
+            "Air kaldu dan garam secukupnya"
         ],
         "steps": [
-            "Iris tipis batang ares, taburi 2 sdm garam lalu remas kuat hingga getahnya keluar dan lemas, lalu bilas air bersih 2-3 kali.",
-            "Rebus tulang ayam/bebek dalam air hingga menghasilkan kaldu gurih.",
-            "Tumis bumbu halus base genep bersama serai dan daun salam hingga harum.",
-            "Tuang bumbu tumis ke dalam panci rebusan kaldu tulang.",
-            "Masukkan irisan batang ares, bumbui dengan garam dan gula, lalu masak dengan api sedang hingga ares empuk dan bumbu meresap."
-        ]
-    },
-    {
-        "id": "rec_06",
-        "name": "Sate Plecing Singaraja",
-        "category": "Sate & Lilit",
-        "difficulty": "Mudah",
-        "cooking_time": 40,
-        "image_url": "https://images.unsplash.com/photo-1529563021893-cc83c914d73e?w=600",
-        "imageUrl": "https://images.unsplash.com/photo-1529563021893-cc83c914d73e?w=600",
-        "description": "Sate daging panggang empuk dengan siraman bumbu plecing tomat terasi yang pedas asam gurih.",
-        "ingredients": [
-            "400 gram daging sapi/ayam (potong dadu 2 cm)",
-            "Bumbu Marinasi Sate: 3 siung bawang putih cincang, 1 sdm ketumbar bubuk, 2 sdm kecap manis, 1 sdm minyak kelapa",
-            "Bumbu Sambal Plecing: 8 buah cabai rawit merah, 2 buah tomat merah masak, 1 siung bawang putih, 1/2 sdt terasi bakar",
-            "1/2 sdt garam & 1/2 sdt gula merah sisir",
-            "1 buah jeruk limau"
-        ],
-        "steps": [
-            "Campur potongan daging dengan bumbu marinasi, diamkan minimal 20 menit agar meresap.",
-            "Tusuk daging ke tusukan sate (3-4 potong per tusuk).",
-            "Rebus cabai, tomat, dan bawang putih sebentar, lalu ulek halus bersama terasi bakar, garam, dan gula merah.",
-            "Beri perasan jeruk limau pada ulekan sambal plecing.",
-            "Bakar sate di atas bara api hingga matang dan harum kecokelatan.",
-            "Sajikan sate hangat dengan siraman sambal plecing pedas di atasnya."
+            "Rebus potongan ayam/bebek bersama air kaldu hingga mengeluarkan aroma harum.",
+            "Tumis bumbu base genep hingga matang, lalu masukkan ke dalam kuah rebusan ayam.",
+            "Masukkan irisan batang pisang (ares) yang sudah dicuci bersih dari getah.",
+            "Masak dengan api sedang hingga ares empuk dan bumbu meresap sempurna."
         ]
     }
 ]
