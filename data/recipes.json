@@ -5,7 +5,8 @@
         "category": "Olahan Ayam",
         "difficulty": "Menengah",
         "cooking_time": 90,
-        "image_url": "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=600",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Ayam_betutu.jpg/800px-Ayam_betutu.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Ayam_betutu.jpg/800px-Ayam_betutu.jpg",
         "description": "Ayam utuh dengan bumbu rempah base genep pekat yang dikukus dan dipanggang lambat hingga meresap ke serat daging.",
         "ingredients": [
             "1 ekor ayam utuh (ayam kampung lebih disarankan)",
@@ -35,7 +36,8 @@
         "category": "Sate & Lilit",
         "difficulty": "Mudah",
         "cooking_time": 45,
-        "image_url": "https://images.unsplash.com/photo-1544025162-d76694265947?w=600",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Sate_Lilit_Bali.JPG/800px-Sate_Lilit_Bali.JPG",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Sate_Lilit_Bali.JPG/800px-Sate_Lilit_Bali.JPG",
         "description": "Daging ikan cincang berpadu kelapa parut dan bumbu base genep wangi yang dililitkan pada batang serai segar.",
         "ingredients": [
             "500 gram fillet ikan tenggiri / tongkol (haluskan)",
@@ -62,7 +64,8 @@
         "category": "Sayur & Lawar",
         "difficulty": "Mudah",
         "cooking_time": 30,
-        "image_url": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Lawar.JPG/800px-Lawar.JPG",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Lawar.JPG/800px-Lawar.JPG",
         "description": "Sayuran renyah berpadu gurihnya kelapa bakar parut dan siraman bumbu base genep tumis.",
         "ingredients": [
             "250 gram kacang panjang muda (cuci bersih, potong 0.5 cm)",
@@ -87,7 +90,8 @@
         "category": "Sambal Autentik",
         "difficulty": "Sangat Mudah",
         "cooking_time": 15,
-        "image_url": "https://images.unsplash.com/photo-1596797038530-2c107229654b?w=600",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Sambal_matah.JPG/800px-Sambal_matah.JPG",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Sambal_matah.JPG/800px-Sambal_matah.JPG",
         "description": "Sambal mentah iris segar dengan kombinasi serai, bawang merah, cabai, dan siraman minyak kelapa mendidih.",
         "ingredients": [
             "12 butir bawang merah segar (iris tipis merata)",
@@ -113,7 +117,8 @@
         "category": "Sayur & Lawar",
         "difficulty": "Menengah",
         "cooking_time": 60,
-        "image_url": "https://images.unsplash.com/photo-1547592180-85f173990554?w=600",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Jukut_Ares.jpg/800px-Jukut_Ares.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Jukut_Ares.jpg/800px-Jukut_Ares.jpg",
         "description": "Sup kuah hangat tradisional dari batang pohon pisang muda yang dimasak bersama kaldu dan bumbu base genep.",
         "ingredients": [
             "1 batang pohon pisang muda (ares) bagian dalam yang putih empuk",
@@ -139,6 +144,7 @@
         "difficulty": "Mudah",
         "cooking_time": 40,
         "image_url": "https://images.unsplash.com/photo-1529563021893-cc83c914d73e?w=600",
+        "imageUrl": "https://images.unsplash.com/photo-1529563021893-cc83c914d73e?w=600",
         "description": "Sate daging panggang empuk dengan siraman bumbu plecing tomat terasi yang pedas asam gurih.",
         "ingredients": [
             "400 gram daging sapi/ayam (potong dadu 2 cm)",

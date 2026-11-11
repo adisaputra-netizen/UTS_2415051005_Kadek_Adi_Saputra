@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
       category: 'Olahan Ayam',
       difficulty: 'Sedang',
       cookingTime: 90,
-      imageUrl: 'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=600&q=80',
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Ayam_betutu.jpg/800px-Ayam_betutu.jpg',
       ingredients: ['1 ekor ayam utuh', 'Bumbu Base Genep', 'Daun pisang pembungkus'],
       steps: ['Haluskan bumbu base genep.', 'Balurkan ke seluruh ayam.', 'Kukus dan panggang lambat.'],
       description: 'Ayam dengan bumbu base genep lengkap yang dipanggang lambat hingga daging sangat empuk.',
@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
       category: 'Sate & Lilit',
       difficulty: 'Mudah',
       cookingTime: 35,
-      imageUrl: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80',
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Sate_Lilit_Bali.JPG/800px-Sate_Lilit_Bali.JPG',
       ingredients: ['500g fillet ikan tenggiri', 'Kelapa parut', 'Batang serai untuk tusuk'],
       steps: ['Campur daging ikan, kelapa, dan bumbu.', 'Lilitkan adonan ke batang serai.', 'Panggang hingga harum.'],
       description: 'Daging ikan tenggiri giling berbumbu rempah wangi dililitkan pada batang serai segar.',
@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
       category: 'Sambal & Bumbu',
       difficulty: 'Mudah',
       cookingTime: 15,
-      imageUrl: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80',
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Sambal_matah.JPG/800px-Sambal_matah.JPG',
       ingredients: ['Bawang merah iris', 'Cabai rawit merah iris', 'Batang serai putih', 'Minyak kelapa panas'],
       steps: ['Iris tipis bahan.', 'Remas dengan garam & terasi.', 'Siram minyak kelapa panas.'],
       description: 'Sambal mentah iris segar dengan perpaduan bawang merah, cabai rawit, serai, dan minyak kelapa panas.',
@@ -228,7 +228,7 @@ class HomeScreen extends StatelessWidget {
                     color: const Color(0xFF2C1810),
                     image: const DecorationImage(
                       image: NetworkImage(
-                        'https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=1200&q=80',
+                        'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?q=80&w=1000&auto=format&fit=crop',
                       ),
                       fit: BoxFit.cover,
                     ),
@@ -578,7 +578,7 @@ class HomeScreen extends StatelessWidget {
                     child: Image.network(
                       recipe.imageUrl,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => Container(
+                      errorBuilder: (_, _, _) => Container(
                         color: const Color(0xFFEADBC8),
                         child: const Icon(Icons.restaurant_menu, color: primaryTerracotta, size: 36),
                       ),
@@ -732,7 +732,7 @@ class HomeScreen extends StatelessWidget {
                   child: Image.network(
                     recipe.imageUrl,
                     fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => Container(
+                    errorBuilder: (_, _, _) => Container(
                       color: const Color(0xFFEADBC8),
                       child: const Icon(Icons.restaurant_menu, color: primaryTerracotta, size: 30),
                     ),
