@@ -15,7 +15,7 @@ void main() async {
   // Inisialisasi Supabase dengan kredensial proyek
   await Supabase.initialize(
     url: 'https://rznzycchynbewjmabpog.supabase.co',
-    anonKey: 'sb_publishable_iNaKCFVLbvAfWx3_DP7BCA_hzxmZra5',
+    publishableKey: 'sb_publishable_iNaKCFVLbvAfWx3_DP7BCA_hzxmZra5',
   );
 
   final apiService = ApiService();

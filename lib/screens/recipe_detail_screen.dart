@@ -73,7 +73,7 @@ class RecipeDetailScreen extends StatelessWidget {
                   ? Image.network(
                       imageUrl,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => _buildImagePlaceholder(primaryTerracotta, category),
+                      errorBuilder: (_, _, _) => _buildImagePlaceholder(primaryTerracotta, category),
                     )
                   : _buildImagePlaceholder(primaryTerracotta, category),
             ),

@@ -27,6 +27,11 @@ class RecipeProvider with ChangeNotifier {
         .toList();
   }
 
+  // Daftar resep favorit yang disukai pengguna
+  List<BalineseRecipe> get favoriteRecipes {
+    return _allRecipes.where((r) => _favoriteRecipeIds.contains(r.id)).toList();
+  }
+
   bool isFavorite(String id) => _favoriteRecipeIds.contains(id);
 
   void toggleFavorite(String id) {

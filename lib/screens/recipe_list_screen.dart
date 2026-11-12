@@ -6,6 +6,7 @@ import '../widgets/responsive_recipe_grid.dart';
 import '../widgets/state_feedback_widget.dart';
 import 'recipe_detail_screen.dart';
 import 'add_recipe_note_screen.dart';
+import 'saved_recipes_screen.dart';
 
 class RecipeListScreen extends StatefulWidget {
   const RecipeListScreen({super.key});
@@ -57,6 +58,18 @@ class _RecipeListScreenState extends State<RecipeListScreen> {
       appBar: AppBar(
         title: const Text('Katalog Resep Bali'),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.favorite_rounded, color: primaryTerracotta),
+            tooltip: 'Resep yang Disukai',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SavedRecipesScreen(initialTabIndex: 0),
+                ),
+              );
+            },
+          ),
           IconButton(
             icon: const Icon(Icons.refresh),
             tooltip: 'Muat ulang resep',
@@ -242,7 +255,7 @@ class _RecipeListScreenState extends State<RecipeListScreen> {
                                 child: Image.network(
                                   recipe.imageUrl,
                                   fit: BoxFit.cover,
-                                  errorBuilder: (_, __, ___) => Container(
+                                  errorBuilder: (_, _, _) => Container(
                                     color: const Color(0xFFEADBC8),
                                     child: const Icon(
                                       Icons.restaurant_menu,

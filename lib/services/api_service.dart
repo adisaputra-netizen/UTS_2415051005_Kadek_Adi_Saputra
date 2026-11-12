@@ -3,14 +3,15 @@ import 'package:http/http.dart' as http;
 import '../models/balinese_recipe.dart';
 
 class ApiService {
-  // Endpoint REST API yang mengarah ke raw file JSON di repositori GitHub kamu
-  static const String endpoint =
-      'https://raw.githubusercontent.com/adisaputra-netizen/UTS_2415051005_Kadek_Adi_Saputra/main/data/recipes.json';
-
   Future<List<BalineseRecipe>> fetchRecipes() async {
     try {
+      // URL ditambahkan timestamp ?t=... agar melewati cache CDN GitHub
+      final url = Uri.parse(
+        'https://raw.githubusercontent.com/adisaputra-netizen/UTS_2415051005_Kadek_Adi_Saputra/main/data/recipes.json?t=${DateTime.now().millisecondsSinceEpoch}',
+      );
+
       final response = await http
-          .get(Uri.parse(endpoint))
+          .get(url)
           .timeout(const Duration(seconds: 10));
 
       if (response.statusCode == 200) {

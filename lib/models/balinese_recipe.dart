@@ -29,7 +29,7 @@ class BalineseRecipe {
       category: json['category'] as String? ?? 'Umum',
       difficulty: json['difficulty'] as String? ?? 'Mudah',
       cookingTime: (json['cooking_time'] as num?)?.toInt() ?? 30,
-      imageUrl: json['image_url'] as String? ?? '',
+      imageUrl: (json['image_url'] ?? json['imageUrl']) as String? ?? '',
       ingredients: (json['ingredients'] as List<dynamic>?)
               ?.map((item) => item.toString())
               .toList() ??

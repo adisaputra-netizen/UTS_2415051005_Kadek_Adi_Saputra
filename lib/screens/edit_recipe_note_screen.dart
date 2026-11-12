@@ -118,7 +118,7 @@ class _EditRecipeNoteScreenState extends State<EditRecipeNoteScreen> {
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                value: _selectedCategory,
+                initialValue: _selectedCategory,
                 decoration: const InputDecoration(
                   labelText: 'Kategori Resep',
                   border: OutlineInputBorder(),
@@ -133,7 +133,7 @@ class _EditRecipeNoteScreenState extends State<EditRecipeNoteScreen> {
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                value: _selectedDifficulty,
+                initialValue: _selectedDifficulty,
                 decoration: const InputDecoration(
                   labelText: 'Tingkat Kesulitan',
                   border: OutlineInputBorder(),
